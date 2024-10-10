@@ -1,25 +1,19 @@
-# Build stage
-FROM node:lts-alpine as build
+FROM node:16 AS build
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package*.json ./
+COPY client/package*.json ./
 
 RUN npm install
 
-COPY . .
-
-RUN npm install react-router-dom @types/react-router-dom
-
+COPY client/ .
 
 RUN npm run build
 
 FROM nginx:alpine
 
-COPY --from=build /usr/src/app/dist /usr/share/nginx/html
-
+COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
-
 
 CMD ["nginx", "-g", "daemon off;"]

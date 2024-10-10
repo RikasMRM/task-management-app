@@ -1,10 +1,11 @@
+// src/components/TaskForm.tsx
 import React, { useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Form, Input, DatePicker, Select, Button, Modal, message } from "antd";
 import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import { createTask, updateTask } from "../api/tasks";
 import { Task } from "../types";
-import moment from "moment";
+import dayjs from "dayjs";
 
 const { Option } = Select;
 
@@ -30,7 +31,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     if (task) {
       form.setFieldsValue({
         ...task,
-        due_date: moment(task.due_date),
+        due_date: dayjs(task.due_date),
       });
     } else {
       form.resetFields();
@@ -40,7 +41,6 @@ const TaskForm: React.FC<TaskFormProps> = ({
   const mutation = useMutation(isEditing ? updateTask : createTask, {
     onSuccess: () => {
       queryClient.invalidateQueries(["tasks"]);
-      queryClient.refetchQueries(["tasks"]);
       form.resetFields();
       onComplete();
       message.success(`Task ${isEditing ? "updated" : "added"} successfully!`);
@@ -55,7 +55,11 @@ const TaskForm: React.FC<TaskFormProps> = ({
   const onFinish = (values: Omit<Task, "id">) => {
     const submitData = {
       ...values,
-      due_date: values.due_date.format("YYYY-MM-DD"),
+      due_date: values.due_date
+        ? typeof values.due_date === "string"
+          ? dayjs(values.due_date).format("YYYY-MM-DD")
+          : (values.due_date as dayjs.Dayjs).format("YYYY-MM-DD")
+        : null,
     };
     if (isEditing && task) {
       mutation.mutate({ id: task.id, ...submitData } as Task);
@@ -63,7 +67,6 @@ const TaskForm: React.FC<TaskFormProps> = ({
       mutation.mutate(submitData as Task);
     }
   };
-
   return (
     <Modal
       title={
