@@ -1,14 +1,12 @@
 FROM node:lts-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package*.json ./
+COPY server/package*.json ./
 
 RUN npm install
 
-COPY . .
-
-RUN npm run build
+COPY server/ .
 
 EXPOSE 3000
 
