@@ -4,7 +4,7 @@
 
 Task Management System is a modern, responsive web application designed to help users organize, track, and manage their tasks efficiently. Built with React and Node.js, it offers a seamless experience for creating, updating, and monitoring tasks across various devices.
 
-![Task Management System Screenshot](./screenshot.png)
+![Task Management System Screenshot](./screenshot.jpg)
 
 ## Features
 
