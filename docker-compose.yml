@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres.wpvuuzmzsxytwffwrxtl:Upo4IbtsR5RK1iRb@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+
+volumes:
+  db_data:
