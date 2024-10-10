@@ -15,3 +15,7 @@
     margin: 0 auto;
   }
 }
+
+.ant-card {
+  margin-bottom: 16px;
+}

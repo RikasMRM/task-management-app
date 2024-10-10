@@ -21,12 +21,6 @@ export default {
       },
     },
     extend: {
-      backgroundImage: {
-        "custom-gradient":
-          "linear-gradient(to top left, #881337 -30%, #0A011D 45%, #881337 190%)",
-        "booking-card-gradient":
-          "linear-gradient(143deg, #192145 30.17%, #200E16 100%)",
-      },
       borderColor: {
         "semi-transparent-white": "rgba(255, 255, 255, 0.08)",
       },
@@ -41,8 +35,8 @@ export default {
         xxl: `${1280 / 16}rem`,
       },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "#F7F9FC",
+        foreground: "#3A4856",
         grey: {
           100: "#F5F5F5",
           150: "#fafafa",
@@ -58,15 +52,48 @@ export default {
           650: "#141414",
         },
         primary: {
+          DEFAULT: "#7C9CBF",
+          light: "#A3B8D2",
+          dark: "#5A7A9F",
           600: "#e50914",
           700: "#BF0010",
           900: "#730011",
           1000: "#4D000E",
         },
+        secondary: {
+          DEFAULT: "#B5D1C9",
+          light: "#D0E3DE",
+          dark: "#8FB3A9",
+        },
+        accent: {
+          DEFAULT: "#F2C4CE",
+          light: "#F8DBE1",
+          dark: "#E7A2B1",
+        },
+        text: {
+          dark: "#3A4856",
+          light: "#7B8794",
+        },
+        success: {
+          DEFAULT: "#9ED3AB",
+          light: "#C1E5C9",
+          dark: "#7AB88D",
+        },
+        warning: {
+          DEFAULT: "#F3D8A6",
+          light: "#F9E8C8",
+          dark: "#E9C37F",
+        },
+        danger: {
+          DEFAULT: "#E3A5A1",
+          light: "#EFC4C1",
+          dark: "#D38078",
+        },
         neutral: {
           100: "#ffffff",
           700: "#8C8C8C",
         },
+        border: "#E1E8EF",
       },
       fontSize: {
         12: "12px",
@@ -86,6 +113,6 @@ export default {
         "1-86": "1.86",
       },
     },
-    plugins: [],
   },
+  plugins: [],
 };
